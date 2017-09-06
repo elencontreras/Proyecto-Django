@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block container %}
+	<div class="container">
+	{% for tarea in lista.tarea_set.all %}
+
+	<div class="jumbotron">
+  			<h1><a href=#>{{ tarea.titulo_tarea }}</a> </h1>
+        <h3>{{ tarea.descripcion }} </h3>
+        <h4>Lista: {{ tarea.lista }} </h4>
+        {% if tarea.terminado %}
+       <a href="{% url 'tarea:desmarcar_tarea' lista.id %}?tarea={{tarea.id}}">Desmarcar como finalizada</a>
+        {% else %}
+         <a href="{% url 'tarea:marcar_tarea' lista.id %}?tarea={{tarea.id}}">Finalizar</a>
+         {% endif %}
+       	<h5>Creacion: {{ tarea.fecha_creacion_tarea }} | Ultima modificación: {{ tarea.fecha_modificacion }}</h5>
+       
+		</div>
+           
+        {% endfor %}
+</div>
+{% endblock %}

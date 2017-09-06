@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="container">
+
+{% if object_list %}
+	 
+        {% for tarea in object_list %}
+
+        <div class="jumbotron">
+  			<h1><a href=#>{{ tarea.titulo_tarea }}</a> </h1>
+        <h3>{{ tarea.descripcion }} </h3>
+        <h4>Lista: {{ tarea.lista }} </h4>
+        {%if tarea.terminado == True%}
+        <h4 class="text-danger">Finalizada</h4>
+        {% else %}
+        <h4 class="text-warning">En ejecución</h4>
+        {% endif %}
+       	<h5>Creacion: {{ tarea.fecha_creacion_tarea }} | Ultima modificación: {{ tarea.fecha_modificacion }}</h5>
+       
+		</div>
+           
+        {% endfor %}
+        
+    {% else %}
+        <p>N hay tareas</p>
+    {% endif %}
+	
+{% endblock %}
+</div>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block container %}
+
+<div class= "container">
+<a href="{% url 'tarea:crear_lista' %}" class="btn btn-default btn-lg btn-block">Crear Lista</a>
+
+{% if object_list %}
+	 
+        {% for lista in object_list %}
+
+        <div class="jumbotron">
+  			<h2><a href="{% url 'tarea:detalle_lista' lista.id %}">{{ lista.titulo_lista }}</a> </h2>
+  			<h5>{{ lista.fecha_creacion_lista }}</h5>
+  			
+  			<div class="d-inline">
+
+  			<form method="post">
+  			{% csrf_token %}
+
+  			<a href="{% url 'tarea:modificar_lista' lista.id %}" class="btn btn-primary btn-sm">Editar</a>
+  			<a href="{% url 'tarea:eliminar_lista' lista.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+  			</div>
+  			</form>
+		</div>
+           
+        {% endfor %}
+        
+    {% else %}
+        <p>No hay listas creadas</p>
+    {% endif %}
+
+{% endblock %}
+</div>

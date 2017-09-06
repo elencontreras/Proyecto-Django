@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block container %}
+	<form method="post">
+		{%csrf_token %}
+		<div class="container">
+		<h3>¿Desea eliminar el registro de {{ object.titulo_lista}}?</h3>
+		<button class="btn btn-danger" type="submit">Si, eliminar</button>
+		<a class= "btn btn-default" href="{% url 'tarea:clase_index' %}">Cancelar</a>
+		</div>
+	</form>
+		}
+		
+
+{% endblock %}
